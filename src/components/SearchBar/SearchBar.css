@@ -12,10 +12,16 @@
   height: 100%;
   flex: 3;
   background-color: white;
-  color: black;
+  color: #404040;
   font-size: 25px;
   font-weight: bold;
   border: none;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.TextInput-container:focus {
+  outline: none;
 }
 
 .button-container {
@@ -30,6 +36,7 @@
   user-select: none;
   cursor: pointer;
   transition: 0.4s;
+  outline: none;
 }
 
 .button-container:hover {

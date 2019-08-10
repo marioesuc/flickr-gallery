@@ -5,24 +5,19 @@ import Photo from '../Photo/Photo';
 // Custom PhotosContainer component
 class PhotosContainer extends React.Component {
   render() {
+    const { data } = this.props;
+
     return (
       <div className='PhotosContainer-container'>
-        <Photo
-          url='https://live.staticflickr.com/65535/48501606021_5d0e0dde09_m.jpg'
-          title='prueba'
-        />
-        <Photo
-          url='https://live.staticflickr.com/65535/48501608221_54986bb4a8_m.jpg'
-          title='prueba'
-        />
-        <Photo
-          url='https://live.staticflickr.com/65535/48501606021_5d0e0dde09_m.jpg'
-          title='prueba'
-        />
-        <Photo
-          url='https://live.staticflickr.com/65535/48501608221_54986bb4a8_m.jpg'
-          title='prueba'
-        />
+        {data.map(photo => (
+          <Photo
+            key={photo.id}
+            url={`https://farm${photo.farm}.staticflickr.com/${photo.server}/${
+              photo.id
+            }_${photo.secret}_m.jpg`}
+            title={photo.title}
+          />
+        ))}
       </div>
     );
   }
