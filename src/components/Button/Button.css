@@ -1,0 +1,19 @@
+.Button-container {
+  background-color: rgb(148, 198, 206);
+  color: white;
+  width: 100px;
+  padding: 20px;
+  font-size: 25px;
+  font-weight: bold;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  user-select: none;
+  cursor: pointer;
+  transition: 0.4s;
+}
+
+.Button-container:hover {
+  background-color: rgb(255, 199, 78);
+  transition: 0.2s;
+}
