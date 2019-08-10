@@ -1,0 +1,11 @@
+.Photo-container {
+  margin: 5px;
+  height: 200px;
+  opacity: 0.7;
+  transition: 0.4s;
+}
+
+.Photo-container:hover {
+  opacity: 1;
+  transition: 0.4s;
+}

@@ -1,5 +1,5 @@
-import React from "react";
-import "./Button.css";
+import React from 'react';
+import './Button.css';
 
 // Custom button component
 class Button extends React.Component {
@@ -7,8 +7,8 @@ class Button extends React.Component {
     const { onClick, text } = this.props;
 
     return (
-      <div onClick={() => onClick()} className="Button-container">
-        <div className="Button-content">{text}</div>
+      <div onClick={() => onClick()} className='Button-container'>
+        <div className='Button-content'>{text}</div>
       </div>
     );
   }

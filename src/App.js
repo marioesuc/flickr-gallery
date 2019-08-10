@@ -1,15 +1,15 @@
-import React from "react";
-import "./App.css";
-import Button from "./components/Button/Button";
-import SearchBar from "./components/SearchBar/SearchBar";
+import React from 'react';
+import './App.css';
+import SearchBar from './components/SearchBar/SearchBar';
+import PhotosContainer from './components/PhotosContainer/PhotosContainer';
 
 function App() {
   return (
-    <div className="App">
+    <div className='App'>
       <h1>Flickr Gallery</h1>
 
       <SearchBar />
-      <div />
+      <PhotosContainer />
     </div>
   );
 }

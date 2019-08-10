@@ -1,16 +1,14 @@
-import React from "react";
-import "./SearchBar.css";
+import React from 'react';
+import './SearchBar.css';
 
 // Custom SearchBar component
 class SearchBar extends React.Component {
   render() {
-    const { onClick, text } = this.props;
-
     return (
       <form>
-        <div className="SearchBar-container">
-          <input type="text" className="TextInput-container" />
-          <button type="submit" className="button-container">
+        <div className='SearchBar-container'>
+          <input type='text' className='TextInput-container' />
+          <button type='submit' className='button-container'>
             Search
           </button>
         </div>
