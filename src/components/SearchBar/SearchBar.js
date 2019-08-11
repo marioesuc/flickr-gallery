@@ -15,7 +15,13 @@ class SearchBar extends React.Component {
     // Prevents page from reloading on form submit
     e.preventDefault();
 
-    return this.props.onSubmit(text);
+    // Check if string is filled
+    if (text.length) {
+      return this.props.onSubmit(text);
+    }
+
+    // Else use the default argument defined within the function
+    return this.props.onSubmit();
   };
 
   handleOnChange = event => this.setState({ value: event.target.value });
