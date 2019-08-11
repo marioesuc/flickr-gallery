@@ -13,7 +13,7 @@ class App extends React.Component {
 
     this.state = {
       textToSearch: '',
-      page: 1,
+      page: 0,
       pages: 1,
       photos: [],
       loading: true,
@@ -28,6 +28,7 @@ class App extends React.Component {
   }
 
   componentDidUpdate() {
+    // Trigger scrolling function to check if photos filled the whole page (specially in case of big res monitors)
     this.trackScrolling();
   }
 
@@ -44,46 +45,44 @@ class App extends React.Component {
       !loading &&
       page < pages
     ) {
-      this.setState(
-        {
-          page: page + 1
-        },
-        state => {
-          this.searchFlickrPhotos(this.state.textToSearch, this.state.page);
-        }
-      );
+      this.searchFlickrPhotos(this.state.textToSearch, this.state.page);
     }
   };
 
   searchFlickrPhotos = (text, page = 1) => {
     const { photos } = this.state;
 
-    // If the text is filled, search for related photos, if not load a refined gallery from a specific user
-    const url =
-      text && text.length
-        ? `https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${FLICKR_API_KEY}&text=${text}&page=${page}&per_page=20&format=json&nojsoncallback=1`
-        : `https://api.flickr.com/services/rest/?method=flickr.people.getPhotos&api_key=${FLICKR_API_KEY}&user_id=31148056@N04&page=${page}&per_page=20&format=json&nojsoncallback=1`;
+    this.setState(
+      {
+        page: page + 1,
+        loading: true
+      },
+      () => {
+        // If the text is filled, search for related photos, if not load a refined gallery from a specific user
+        const url =
+          text && text.length
+            ? `https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${FLICKR_API_KEY}&text=${text}&page=${page}&per_page=20&format=json&nojsoncallback=1`
+            : `https://api.flickr.com/services/rest/?method=flickr.people.getPhotos&api_key=${FLICKR_API_KEY}&user_id=31148056@N04&page=${page}&per_page=20&format=json&nojsoncallback=1`;
 
-    this.setState({ loading: true });
-    axios
-      .get(url)
+        axios
+          .get(url)
 
-      .then(response => {
-        this.setState({
-          photos: [...photos, ...response.data.photos.photo],
-          pages: response.data.photos.pages,
-          loading: false
-        });
-      })
-      .catch(error => {
-        console.log('Error fetching the data', error);
-      });
+          .then(response => {
+            this.setState({
+              photos: [...photos, ...response.data.photos.photo],
+              pages: response.data.photos.pages,
+              loading: false
+            });
+          })
+          .catch(error => {
+            console.log('Error fetching the data', error);
+          });
+      }
+    );
   };
 
   handleOnSubmit = text => {
-    return this.setState({ textToSearch: text, photos: [], page: 1 }, () => {
-      this.searchFlickrPhotos(this.state.textToSearch, this.state.page);
-    });
+    return this.setState({ textToSearch: text, photos: [], page: 1 });
   };
 
   handleOnPhotoClick = photoId => {
