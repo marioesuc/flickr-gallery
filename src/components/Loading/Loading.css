@@ -1,0 +1,19 @@
+.Loading-container {
+  background: rgba(255, 255, 255, 0.5);
+  font-weight: bold;
+  display: inline-block;
+  padding: 20px;
+  border-radius: 25px;
+  box-shadow: 0px 2px 5px 1px rgba(0, 0, 0, 0.1);
+  margin: 20px;
+}
+
+.Loading-container span {
+  animation: blinker 1s linear infinite;
+}
+
+@keyframes blinker {
+  50% {
+    opacity: 0.2;
+  }
+}

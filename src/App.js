@@ -3,6 +3,7 @@ import './App.css';
 import axios from 'axios';
 import SearchBar from './components/SearchBar/SearchBar';
 import PhotosContainer from './components/PhotosContainer/PhotosContainer';
+import Loading from './components/Loading/Loading';
 import { FLICKR_API_KEY } from './config/Constants';
 
 class App extends React.Component {
@@ -92,7 +93,7 @@ class App extends React.Component {
     return (
       <div>
         <PhotosContainer data={photos} />
-        {loading && <h3>Loading photos...</h3>}
+        {loading && <Loading />}
       </div>
     );
   };
