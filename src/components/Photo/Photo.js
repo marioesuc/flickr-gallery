@@ -2,14 +2,13 @@ import React from 'react';
 import './Photo.css';
 
 const Photo = props => {
+  const handleOnPhotoClick = () => props.onClick(props.photoId);
+
+  const { url, title } = props;
+
   return (
-    <div>
-      <img
-        src={props.url}
-        className='Photo-container'
-        alt={props.title}
-        title={props.title}
-      />
+    <div onClick={handleOnPhotoClick}>
+      <img src={url} className='Photo-container' alt={title} title={title} />
     </div>
   );
 };

@@ -3,6 +3,7 @@ import './App.css';
 import axios from 'axios';
 import SearchBar from './components/SearchBar/SearchBar';
 import PhotosContainer from './components/PhotosContainer/PhotosContainer';
+import PhotoVisor from './components/PhotoVisor/PhotoVisor';
 import Loading from './components/Loading/Loading';
 import { FLICKR_API_KEY } from './config/Constants';
 
@@ -15,12 +16,10 @@ class App extends React.Component {
       page: 1,
       pages: 1,
       photos: [],
-      loading: true
+      loading: true,
+      isVisorVisible: false,
+      activePhoto: null
     };
-  }
-
-  isBottom(el) {
-    return el.getBoundingClientRect().bottom <= window.innerHeight;
   }
 
   componentDidMount() {
@@ -87,20 +86,51 @@ class App extends React.Component {
     });
   };
 
+  handleOnPhotoClick = photoId => {
+    axios
+      .get(
+        `https://api.flickr.com/services/rest/?method=flickr.photos.getSizes&api_key=${FLICKR_API_KEY}&photo_id=${photoId}&format=json&nojsoncallback=1`
+      )
+
+      .then(response => {
+        const sizes = response.data.sizes.size;
+        const largestPhoto = sizes[sizes.length - 1];
+
+        this.setState({
+          activePhoto: largestPhoto,
+          isVisorVisible: true
+        });
+      })
+      .catch(error => {
+        console.log('Error fetching the photo URL data', error);
+      });
+  };
+
+  handleOnVisorClose = () => {
+    this.setState({ isVisorVisible: false });
+  };
+
   renderPhotosContainer = () => {
     const { loading, photos } = this.state;
 
     return (
       <div>
-        <PhotosContainer data={photos} />
+        <PhotosContainer data={photos} onPhotoClick={this.handleOnPhotoClick} />
         {loading && <Loading />}
       </div>
     );
   };
 
   render() {
+    const { isVisorVisible, activePhoto } = this.state;
+
     return (
       <div className='App'>
+        <PhotoVisor
+          visible={isVisorVisible}
+          photo={activePhoto}
+          onVisorClose={this.handleOnVisorClose}
+        />
         <h1>Flickr Gallery</h1>
 
         <SearchBar onSubmit={this.handleOnSubmit} />
