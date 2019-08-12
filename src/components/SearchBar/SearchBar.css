@@ -1,18 +1,22 @@
 .SearchBar-container {
   display: flex;
   height: 80px;
-  width: 700px;
-  flex: 1 100%;
   margin-left: auto;
   margin-right: auto;
-  box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.1);
   margin-top: 50px;
   margin-bottom: 50px;
+  flex: 1;
+}
+
+.SearchBar-container form {
+  display: flex;
+  flex-direction: row;
+  flex: 1;
 }
 
 .TextInput-container {
   height: 100%;
-  flex: 3;
+  flex: 4;
   background-color: white;
   color: #404040;
   font-size: 25px;
@@ -27,10 +31,11 @@
 }
 
 .button-container {
+  flex: 1;
   height: 100%;
   background-color: rgb(148, 198, 206);
   color: white;
-  flex: 1;
+  width: 100px;
   padding: 20px;
   font-size: 25px;
   font-weight: bold;
@@ -44,4 +49,39 @@
 .button-container:hover {
   background-color: rgb(255, 199, 78);
   transition: 0.2s;
+}
+
+@media screen and (max-width: 700px) {
+  .SearchBar-container {
+    flex: 1;
+    height: 150px;
+    margin: 30px;
+  }
+
+  .SearchBar-container form {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+
+  .TextInput-container {
+    flex: 1;
+    padding: 20px;
+    height: 100px;
+    box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.1);
+  }
+
+  .button-container {
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 150px;
+  }
+}
+
+@media screen and (min-width: 701px) {
+  .SearchBar-container {
+    box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.1);
+    width: 700px;
+  }
 }

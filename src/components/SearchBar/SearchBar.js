@@ -30,8 +30,8 @@ class SearchBar extends React.Component {
     const { value } = this.state;
 
     return (
-      <form onSubmit={e => this.handleSubmit(e, value)}>
-        <div className='SearchBar-container'>
+      <div className='SearchBar-container'>
+        <form onSubmit={e => this.handleSubmit(e, value)}>
           <input
             type='text'
             value={value}
@@ -41,8 +41,8 @@ class SearchBar extends React.Component {
           <button type='submit' className='button-container'>
             Search
           </button>
-        </div>
-      </form>
+        </form>
+      </div>
     );
   }
 }
