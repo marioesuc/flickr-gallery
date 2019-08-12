@@ -75,7 +75,7 @@ class App extends React.Component {
             });
           })
           .catch(error => {
-            console.log('Error fetching the data', error);
+            alert('Error fetching the data', error);
           });
       }
     );
@@ -101,7 +101,7 @@ class App extends React.Component {
         });
       })
       .catch(error => {
-        console.log('Error fetching the photo URL data', error);
+        alert('Error fetching the photo URL data', error);
       });
   };
 
