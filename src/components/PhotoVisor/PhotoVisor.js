@@ -12,16 +12,18 @@ class PhotoVisor extends React.Component {
       const { source } = photo;
 
       return (
-        <div className='PhotoVisor-container'>
-          <div className='PhotoVisor-ImageContainer'>
-            <button
-              className='PhotoVisor-close'
-              onClick={this.handleOnVisorClose}
-            >
-              Close
-            </button>
-            <img alt={source} className='PhotoVisor-image' src={source} />
-          </div>
+        <div>
+          <img alt={source} className='PhotoVisor-image' src={source} />
+          <button
+            className='PhotoVisor-close'
+            onClick={this.handleOnVisorClose}
+          >
+            Close
+          </button>
+          <div
+            className='PhotoVisor-background'
+            onClick={this.handleOnVisorClose}
+          />
         </div>
       );
     }
