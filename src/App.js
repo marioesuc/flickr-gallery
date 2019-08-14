@@ -23,7 +23,10 @@ class App extends React.Component {
   }
 
   componentDidMount() {
+    // Add event listener for mouse scrolling
     document.addEventListener('scroll', this.trackScrolling);
+    // Add event listener for keyup events to switch photos on the visor
+    window.addEventListener('keyup', this.keyHandling);
     this.searchFlickrPhotos(this.state.textToSearch);
   }
 
@@ -46,6 +49,22 @@ class App extends React.Component {
       page < pages
     ) {
       this.searchFlickrPhotos(this.state.textToSearch, this.state.page);
+    }
+  };
+
+  keyHandling = e => {
+    const { activePhoto } = this.state;
+
+    switch (activePhoto && e.keyCode) {
+      // Press left arrow
+      case 37:
+        this.handleOnArrowClick(-1);
+        break;
+      // Press right arrow
+      case 39:
+        this.handleOnArrowClick(1);
+        break;
+      default:
     }
   };
 
@@ -96,7 +115,7 @@ class App extends React.Component {
         const largestPhoto = sizes[sizes.length - 1];
 
         this.setState({
-          activePhoto: largestPhoto,
+          activePhoto: { photoId, ...largestPhoto },
           isVisorVisible: true
         });
       })
@@ -107,6 +126,27 @@ class App extends React.Component {
 
   handleOnVisorClose = () => {
     this.setState({ isVisorVisible: false, activePhoto: null });
+  };
+
+  handleOnVisorClose = () => {
+    this.setState({ isVisorVisible: false, activePhoto: null });
+  };
+
+  handleOnArrowClick = relativeIndex => {
+    const { photos, activePhoto } = this.state;
+
+    const currentPhotoObject = photos.filter(
+      photo => photo.id === activePhoto.photoId
+    );
+
+    const newIndex = photos.indexOf(...currentPhotoObject) + relativeIndex;
+    const newPhoto = photos[newIndex];
+
+    if (newIndex !== -1 && newPhoto) {
+      return this.handleOnPhotoClick(newPhoto.id);
+    }
+
+    return null;
   };
 
   renderPhotosContainer = () => {
@@ -128,6 +168,7 @@ class App extends React.Component {
         <PhotoVisor
           visible={isVisorVisible}
           photo={activePhoto}
+          onArrowClick={this.handleOnArrowClick}
           onVisorClose={this.handleOnVisorClose}
         />
         <h1>Flickr Gallery</h1>

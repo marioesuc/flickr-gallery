@@ -3,6 +3,7 @@ import './PhotoVisor.css';
 
 // Custom PhotoVisor component
 class PhotoVisor extends React.Component {
+  handleOnArrowClick = relativeIndex => this.props.onArrowClick(relativeIndex);
   handleOnVisorClose = () => this.props.onVisorClose();
 
   render() {
@@ -15,6 +16,20 @@ class PhotoVisor extends React.Component {
         <div className='PhotoVisor-container'>
           <div className='PhotoVisor-ImageContainer'>
             <img alt={source} className='PhotoVisor-image' src={source} />
+            <div className='PhotoVisor-ArrowsContainer'>
+              <div
+                className='PhotoVisor-LeftArrowContainer'
+                onClick={() => this.handleOnArrowClick(-1)}
+              >
+                ←
+              </div>
+              <div
+                className='PhotoVisor-RightArrowContainer'
+                onClick={() => this.handleOnArrowClick(1)}
+              >
+                →
+              </div>
+            </div>
           </div>
           <button
             className='PhotoVisor-close'
