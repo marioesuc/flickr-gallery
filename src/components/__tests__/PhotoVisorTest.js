@@ -10,7 +10,8 @@ describe('PhotoVisor', () => {
     const props = {
       visible: true,
       photo: {
-        source: 'source'
+        source: 'source',
+        title: 'title'
       },
       onVisorClose: jest.fn()
     };
