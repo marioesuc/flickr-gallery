@@ -106,19 +106,27 @@ class App extends React.Component {
 
   handleOnPhotoClick = photoId => {
     axios
-      .get(
-        `https://api.flickr.com/services/rest/?method=flickr.photos.getSizes&api_key=${FLICKR_API_KEY}&photo_id=${photoId}&format=json&nojsoncallback=1`
+      .all([
+        axios.get(
+          `https://api.flickr.com/services/rest/?method=flickr.photos.getSizes&api_key=${FLICKR_API_KEY}&photo_id=${photoId}&format=json&nojsoncallback=1`
+        ),
+        axios.get(
+          `https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=${FLICKR_API_KEY}&photo_id=${photoId}&format=json&nojsoncallback=1`
+        )
+      ])
+
+      .then(
+        axios.spread((sizesResponse, infoResponse) => {
+          const sizes = sizesResponse.data.sizes.size;
+          const largestPhoto = sizes[sizes.length - 1];
+          const title = infoResponse.data.photo.title._content;
+
+          this.setState({
+            activePhoto: { photoId, title, ...largestPhoto },
+            isVisorVisible: true
+          });
+        })
       )
-
-      .then(response => {
-        const sizes = response.data.sizes.size;
-        const largestPhoto = sizes[sizes.length - 1];
-
-        this.setState({
-          activePhoto: { photoId, ...largestPhoto },
-          isVisorVisible: true
-        });
-      })
       .catch(error => {
         alert('Error fetching the photo URL data', error);
       });
