@@ -1,6 +1,7 @@
 import React from 'react';
 import './Loading.css';
 
+// Custom Loading component
 const Loading = props => {
   return (
     <div className='Loading-container'>

@@ -118,6 +118,7 @@ class App extends React.Component {
       .then(
         axios.spread((sizesResponse, infoResponse) => {
           const sizes = sizesResponse.data.sizes.size;
+          // Since the response is sorted by photo size, pick the latest object to get the largest
           const largestPhoto = sizes[sizes.length - 1];
           const title = infoResponse.data.photo.title._content;
 
@@ -143,13 +144,17 @@ class App extends React.Component {
   handleOnArrowClick = relativeIndex => {
     const { photos, activePhoto } = this.state;
 
+    // Find the object of the current active photo by its id
     const currentPhotoObject = photos.filter(
       photo => photo.id === activePhoto.photoId
     );
 
+    // Update the index summing up the passed relative index
     const newIndex = photos.indexOf(...currentPhotoObject) + relativeIndex;
+    // Get the corresponding object in the photos array
     const newPhoto = photos[newIndex];
 
+    // Prevents out of array range accesses if object wasn't found
     if (newIndex !== -1 && newPhoto) {
       return this.handleOnPhotoClick(newPhoto.id);
     }

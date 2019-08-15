@@ -1,6 +1,7 @@
 import React from 'react';
 import './Photo.css';
 
+// Custom Photo component
 const Photo = props => {
   const handleOnPhotoClick = () => props.onClick(props.photoId);
 
