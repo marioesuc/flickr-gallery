@@ -1,4 +1,17 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# React Flickr Gallery
+
+This React app is a gallery that fetches images from Flickr.
+
+When running it, it will first load by default photos taken from [this gallery](https://www.flickr.com/people/ucles17/) *(photos' credits to José María Uclés)*.
+
+## Features
+
+The features implemented in this gallery are the following:
+
+- __Search functionality:__ Look for new photos on Flickr and update the gallery.
+- __Photo Viewer:__ Lightbox effect to enlarge pictures and check their title. Possibility to switch within the viewer between different photos, either by using the arrow icons on both sides or the keyboard arrows.
+- __Endless Scrolling:__ When scrolling down to the bottom of the page, new photos will load (if available) in batches of 20 pictures.
+- __Responsive:__ UI adapted to all kind of resolutions/devices.
 
 ## Available Scripts
 
