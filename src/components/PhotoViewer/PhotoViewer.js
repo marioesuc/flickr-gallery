@@ -1,10 +1,10 @@
 import React from 'react';
-import './PhotoVisor.css';
+import './PhotoViewer.css';
 
-// Custom PhotoVisor component
-class PhotoVisor extends React.Component {
+// Custom PhotoViewer component
+class PhotoViewer extends React.Component {
   handleOnArrowClick = relativeIndex => this.props.onArrowClick(relativeIndex);
-  handleOnVisorClose = () => this.props.onVisorClose();
+  handleOnViewerClose = () => this.props.onViewerClose();
 
   render() {
     const { visible, photo } = this.props;
@@ -14,35 +14,35 @@ class PhotoVisor extends React.Component {
 
       return (
         <div>
-          <div className='PhotoVisor-ImageContainer'>
-            <img alt={source} className='PhotoVisor-image' src={source} />
-            <div className='PhotoVisor-ArrowsContainer'>
+          <div className='PhotoViewer-ImageContainer'>
+            <img alt={source} className='PhotoViewer-image' src={source} />
+            <div className='PhotoViewer-ArrowsContainer'>
               <div
-                className='PhotoVisor-LeftArrowContainer'
+                className='PhotoViewer-LeftArrowContainer'
                 onClick={() => this.handleOnArrowClick(-1)}
               >
                 ←
               </div>
               <div
-                className='PhotoVisor-RightArrowContainer'
+                className='PhotoViewer-RightArrowContainer'
                 onClick={() => this.handleOnArrowClick(1)}
               >
                 →
               </div>
             </div>
-            <div className='PhotoVisor-Title'>
+            <div className='PhotoViewer-Title'>
               <span>{title}</span>
             </div>
           </div>
           <button
-            className='PhotoVisor-close'
-            onClick={this.handleOnVisorClose}
+            className='PhotoViewer-close'
+            onClick={this.handleOnViewerClose}
           >
             Close
           </button>
           <div
-            className='PhotoVisor-background'
-            onClick={this.handleOnVisorClose}
+            className='PhotoViewer-background'
+            onClick={this.handleOnViewerClose}
           />
         </div>
       );
@@ -52,4 +52,4 @@ class PhotoVisor extends React.Component {
   }
 }
 
-export default PhotoVisor;
+export default PhotoViewer;

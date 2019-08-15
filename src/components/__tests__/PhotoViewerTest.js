@@ -1,11 +1,11 @@
 import React from 'react';
 import { shallow, configure } from 'enzyme';
-import PhotoVisor from '../PhotoVisor/PhotoVisor';
+import PhotoViewer from '../PhotoViewer/PhotoViewer';
 import Adapter from 'enzyme-adapter-react-16';
 
 configure({ adapter: new Adapter() });
 
-describe('PhotoVisor', () => {
+describe('PhotoViewer', () => {
   it('renders correctly when active', () => {
     const props = {
       visible: true,
@@ -13,10 +13,10 @@ describe('PhotoVisor', () => {
         source: 'source',
         title: 'title'
       },
-      onVisorClose: jest.fn()
+      onViewerClose: jest.fn()
     };
 
-    const wrapper = shallow(<PhotoVisor {...props} />);
+    const wrapper = shallow(<PhotoViewer {...props} />);
 
     expect(wrapper).toMatchSnapshot();
   });
@@ -25,10 +25,10 @@ describe('PhotoVisor', () => {
     const props = {
       visible: false,
       photo: null,
-      onVisorClose: jest.fn()
+      onViewerClose: jest.fn()
     };
 
-    const wrapper = shallow(<PhotoVisor {...props} />);
+    const wrapper = shallow(<PhotoViewer {...props} />);
 
     expect(wrapper).toMatchSnapshot();
   });

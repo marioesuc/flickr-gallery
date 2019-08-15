@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PhotoViewer renders correctly when active 1`] = `ShallowWrapper {}`;
+
+exports[`PhotoViewer renders correctly when inactive 1`] = `ShallowWrapper {}`;

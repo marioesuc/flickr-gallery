@@ -3,7 +3,7 @@ import './App.css';
 import axios from 'axios';
 import SearchBar from './components/SearchBar/SearchBar';
 import PhotosContainer from './components/PhotosContainer/PhotosContainer';
-import PhotoVisor from './components/PhotoVisor/PhotoVisor';
+import PhotoViewer from './components/PhotoViewer/PhotoViewer';
 import Loading from './components/Loading/Loading';
 import { FLICKR_API_KEY } from './config/Constants';
 
@@ -17,7 +17,7 @@ class App extends React.Component {
       pages: 1,
       photos: [],
       loading: true,
-      isVisorVisible: false,
+      isViewerVisible: false,
       activePhoto: null
     };
   }
@@ -25,7 +25,7 @@ class App extends React.Component {
   componentDidMount() {
     // Add event listener for mouse scrolling
     document.addEventListener('scroll', this.trackScrolling);
-    // Add event listener for keyup events to switch photos on the visor
+    // Add event listener for keyup events to switch photos on the Viewer
     window.addEventListener('keyup', this.keyHandling);
     this.searchFlickrPhotos(this.state.textToSearch);
   }
@@ -124,7 +124,7 @@ class App extends React.Component {
 
           this.setState({
             activePhoto: { photoId, title, ...largestPhoto },
-            isVisorVisible: true
+            isViewerVisible: true
           });
         })
       )
@@ -133,12 +133,12 @@ class App extends React.Component {
       });
   };
 
-  handleOnVisorClose = () => {
-    this.setState({ isVisorVisible: false, activePhoto: null });
+  handleOnViewerClose = () => {
+    this.setState({ isViewerVisible: false, activePhoto: null });
   };
 
-  handleOnVisorClose = () => {
-    this.setState({ isVisorVisible: false, activePhoto: null });
+  handleOnViewerClose = () => {
+    this.setState({ isViewerVisible: false, activePhoto: null });
   };
 
   handleOnArrowClick = relativeIndex => {
@@ -174,15 +174,15 @@ class App extends React.Component {
   };
 
   render() {
-    const { isVisorVisible, activePhoto } = this.state;
+    const { isViewerVisible, activePhoto } = this.state;
 
     return (
       <div className='App'>
-        <PhotoVisor
-          visible={isVisorVisible}
+        <PhotoViewer
+          visible={isViewerVisible}
           photo={activePhoto}
           onArrowClick={this.handleOnArrowClick}
-          onVisorClose={this.handleOnVisorClose}
+          onViewerClose={this.handleOnViewerClose}
         />
         <h1>Flickr Gallery</h1>
 
