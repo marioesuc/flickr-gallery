@@ -2,7 +2,7 @@
 
 This React app is a gallery that fetches images from Flickr.
 
-When running it, it will first load by default photos taken from [this gallery](https://www.flickr.com/people/ucles17/) *(photos' credits to José María Uclés)*.
+When running it, it will first load by default photos taken from [this profile](https://www.flickr.com/people/ucles17/) *(photos' credits to José María Uclés)*.
 
 ## Features
 
