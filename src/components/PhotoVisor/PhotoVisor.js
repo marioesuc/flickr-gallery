@@ -10,10 +10,10 @@ class PhotoVisor extends React.Component {
     const { visible, photo } = this.props;
 
     if (visible) {
-      const { source } = photo;
+      const { source, title } = photo;
 
       return (
-        <div className='PhotoVisor-container'>
+        <div>
           <div className='PhotoVisor-ImageContainer'>
             <img alt={source} className='PhotoVisor-image' src={source} />
             <div className='PhotoVisor-ArrowsContainer'>
@@ -29,6 +29,9 @@ class PhotoVisor extends React.Component {
               >
                 →
               </div>
+            </div>
+            <div className='PhotoVisor-Title'>
+              <span>{title}</span>
             </div>
           </div>
           <button
